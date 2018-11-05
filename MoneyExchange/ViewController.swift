@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     
     @IBOutlet weak var pickerView: UIPickerView!
     
@@ -42,6 +41,12 @@ class ViewController: UIViewController {
         } else {
             currCoin += 1
         }
+    }
+    
+    // Covertion vars
+    @IBOutlet weak var lblConvertValue: UILabel!
+    @IBAction func btnConvert(_ sender: UIButton) {
+//        lblConvertValue.text =
     }
     
     override func viewDidLoad() {
