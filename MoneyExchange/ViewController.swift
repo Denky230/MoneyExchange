@@ -10,8 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var pickerView: UIPickerView!
-    
     // Coins
     var coins: [Coin] = []
     var currCoin: Int = 0 {
@@ -44,10 +42,15 @@ class ViewController: UIViewController {
     }
     
     // Covertion vars
+    @IBOutlet weak var inputTextMoney: UITextField!
     @IBOutlet weak var lblConvertValue: UILabel!
     @IBAction func btnConvert(_ sender: UIButton) {
-//        lblConvertValue.text =
+        lblConvertValue.text = "\(inputTextMoney.text!) \(firstCoin!.getName()) equals to"
     }
+    
+    // PickerView
+    @IBOutlet weak var pickerView: UIPickerView!
+    var firstCoin, secondCoin: Coin?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +63,7 @@ class ViewController: UIViewController {
         ]
         currCoin = 0
         
+        initPickerView()
     }
     
     func setCoin(coin: Coin) {
@@ -67,5 +71,36 @@ class ViewController: UIViewController {
         coinValue.text = String(coin.getValue()) + "€"
         coinFlag.image = coin.getFlag()
         coinBackground.image = coin.getBackground()
+    }
+    
+    func initPickerView() {
+        pickerView.delegate = self
+        pickerView.selectRow(0, inComponent: 0, animated: true)
+        pickerView.selectRow(0, inComponent: 1, animated: false)        
+    }
+}
+
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return coins.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return coins[row].getName()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("hi")
+        
+        if (component == 1) {
+            firstCoin = coins[row]
+        } else {
+            secondCoin = coins[row]
+        }
     }
 }
