@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var inputTextMoney: UITextField!
     @IBOutlet weak var lblConvertValue: UILabel!
     @IBAction func btnConvert(_ sender: UIButton) {
-        lblConvertValue.text = "\(inputTextMoney.text!) \(firstCoin!.getName()) equals to"
+        lblConvertValue.text = "\(inputTextMoney.text!) \(firstCoin!.getName())s equals to\n \(secondCoin!.getName())s"
     }
     
     // PickerView
@@ -73,10 +73,24 @@ class ViewController: UIViewController {
         coinBackground.image = coin.getBackground()
     }
     
+    func initMoneyInputText() {
+        inputTextMoney.delegate = self
+        inputTextMoney.keyboardType = .numberPad
+    }
+    
     func initPickerView() {
         pickerView.delegate = self
         pickerView.selectRow(0, inComponent: 0, animated: true)
-        pickerView.selectRow(0, inComponent: 1, animated: false)        
+        firstCoin = coins[0]
+        secondCoin = coins[0]
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+        return string.rangeOfCharacter(from: invalidCharacters) == nil
     }
 }
 
@@ -95,8 +109,6 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("hi")
-        
         if (component == 1) {
             firstCoin = coins[row]
         } else {
