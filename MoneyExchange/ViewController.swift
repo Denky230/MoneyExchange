@@ -12,17 +12,33 @@ class ViewController: UIViewController {
     
     // Coins
     var coins: [Coin] = []
+    let coinNames: [String] = [
+        "Euro", "Dollar", "Pound"
+    ]
+    let coinValues: [Int] = [
+        10, 20, 15
+    ]
+    let coinFlags: [UIImage] = [
+        UIImage(named: "flag_eu")!,
+        UIImage(named: "flag_us")!,
+        UIImage(named: "flag_gb")!
+    ]
+    let coinBackgrounds: [UIImage] = [
+        UIImage(named: "background_eu")!,
+        UIImage(named: "background_us")!,
+        UIImage(named: "background_gb")!
+    ]
     var currCoin: Int = 0 {
         didSet {
-            setCoin(coin: coins[currCoin])
+            setCoinElements(coin: coins[currCoin])
         }
     }
     var firstCoin, secondCoin: Coin?
     // Coin attributes
-    @IBOutlet weak var coinBackground: UIImageView!
-    @IBOutlet weak var coinFlag: UIImageView!
     @IBOutlet weak var coinName: UILabel!
     @IBOutlet weak var coinValue: UILabel!
+    @IBOutlet weak var coinFlag: UIImageView!
+    @IBOutlet weak var coinBackground: UIImageView!
     
     // Nav buttons
     @IBOutlet weak var lblPrevious: UIButton!
@@ -53,36 +69,38 @@ class ViewController: UIViewController {
         }
     }
     
-    // PickerView
     @IBOutlet weak var pickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Fill coins array
-        coins = [
-            Coin.init(name: "Euro", value: 10, flag: UIImage(named: "flag_eu")!, background: UIImage(named: "background_eu")!),
-            Coin.init(name: "Dollar", value: 20, flag: UIImage(named: "flag_us")!, background: UIImage(named: "background_us")!),
-            Coin.init(name: "Pound", value: 15, flag: UIImage(named: "flag_gb")!, background: UIImage(named: "background_gb")!)
-        ]
-        currCoin = 0
-        
+        initCoinsArray()
         initPickerView()
         initMoneyInputText()
     }
     
-    func setCoin(coin: Coin) {
+    func setCoinElements(coin: Coin) {
         coinName.text = coin.getName()
         coinValue.text = String(coin.getValue()) + "€"
         coinFlag.image = coin.getFlag()
         coinBackground.image = coin.getBackground()
     }
     
+    func initCoinsArray() {
+        for i in 0...coinNames.count {
+            coins.append(Coin.init(
+                    name: coinNames[i],
+                    value: coinValues[i],
+                    flag: coinFlags[i],
+                    background: coinBackgrounds[i]
+            ))
+        }
+        currCoin = 0
+    }
     func initMoneyInputText() {
         inputTextMoney.delegate = self
         inputTextMoney.keyboardType = .numberPad
     }
-    
     func initPickerView() {
         pickerView.delegate = self
         firstCoin = coins[0]
