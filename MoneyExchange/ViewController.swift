@@ -17,6 +17,7 @@ class ViewController: UIViewController {
             setCoin(coin: coins[currCoin])
         }
     }
+    var firstCoin, secondCoin: Coin?
     // Coin attributes
     @IBOutlet weak var coinBackground: UIImageView!
     @IBOutlet weak var coinFlag: UIImageView!
@@ -41,16 +42,19 @@ class ViewController: UIViewController {
         }
     }
     
-    // Covertion vars
+    // Coversion vars
     @IBOutlet weak var inputTextMoney: UITextField!
     @IBOutlet weak var lblConvertValue: UILabel!
     @IBAction func btnConvert(_ sender: UIButton) {
-        lblConvertValue.text = "\(inputTextMoney.text!) \(firstCoin!.getName())s equals to\n \(secondCoin!.getName())s"
+        if let money = Double(inputTextMoney.text!) {
+            let convertRatio = Double(firstCoin!.getValue()) / Double(secondCoin!.getValue())
+            let convertedResult = money / convertRatio
+            lblConvertValue.text = "\(money) \(firstCoin!.getName())s equals to\n \(convertedResult) \(secondCoin!.getName())s"
+        }
     }
     
     // PickerView
     @IBOutlet weak var pickerView: UIPickerView!
-    var firstCoin, secondCoin: Coin?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +68,7 @@ class ViewController: UIViewController {
         currCoin = 0
         
         initPickerView()
+        initMoneyInputText()
     }
     
     func setCoin(coin: Coin) {
@@ -80,16 +85,36 @@ class ViewController: UIViewController {
     
     func initPickerView() {
         pickerView.delegate = self
-        pickerView.selectRow(0, inComponent: 0, animated: true)
         firstCoin = coins[0]
         secondCoin = coins[0]
+    }
+    
+    func showToast(message : String) {
+        
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(
+            withDuration: 4.0,
+            delay: 0.1,
+            options: .curveEaseOut,
+            animations: { toastLabel.alpha = 0.0 },
+            completion: { (isCompleted) in toastLabel.removeFromSuperview() }
+        )
     }
 }
 
 extension ViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+        let invalidCharacters = CharacterSet(charactersIn: "0123456789.").inverted
         return string.rangeOfCharacter(from: invalidCharacters) == nil
     }
 }
