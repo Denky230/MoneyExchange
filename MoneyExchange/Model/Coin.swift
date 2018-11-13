@@ -21,6 +21,12 @@ class Coin {
         self.flag = flag
         self.background = background
     }
+    init() {
+        self.name = String()
+        self.value = Int()
+        self.flag = UIImage()
+        self.background = UIImage()
+    }
     
     func getName() -> String {
         return self.name

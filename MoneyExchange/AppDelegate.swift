@@ -3,7 +3,7 @@
 //  MoneyExchange
 //
 //  Created by Oscar Rossello on 30/10/2018.
-//  Copyright © 2018 Oscar Rossello. All rights reserved.
+//  Copyright © 2018 Oscar Ross	ello. All rights reserved.
 //
 
 import UIKit
