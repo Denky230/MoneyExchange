@@ -17,7 +17,7 @@ class CoinManager {
     let coinNames: [String] = [
         "Euro", "Dollar", "Pound"
     ]
-    let coinValues: [Int] = [
+    let coinValues: [Double] = [
         10, 20, 15
     ]
     let coinFlags: [UIImage] = [
@@ -32,7 +32,7 @@ class CoinManager {
     ]
     
     func initCoinsArray() {
-        for i in 0...coinNames.count - 1 {
+        for i in 0 ..< coinNames.count {
             coins.append(Coin.init(
                 name: coinNames[i],
                 value: coinValues[i],

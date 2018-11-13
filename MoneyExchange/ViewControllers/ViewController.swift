@@ -43,6 +43,7 @@ class ViewController: UIViewController {
     
     // Coversion
     let HACK_CODE: Int = 666
+    var numberInputField: NumberNaturalTextField = NumberNaturalTextField()
     @IBOutlet weak var inputTextMoney: UITextField!
     @IBOutlet weak var lblConvertValue: UILabel!
     @IBAction func btnConvert(_ sender: UIButton) {
@@ -84,7 +85,7 @@ class ViewController: UIViewController {
     }
     
     func initMoneyInputText() {
-        inputTextMoney.delegate = self
+        inputTextMoney.delegate = numberInputField
         inputTextMoney.keyboardType = .numberPad
     }
     func initPickerView() {
@@ -111,14 +112,5 @@ class ViewController: UIViewController {
             animations: { toastLabel.alpha = 0.0 },
             completion: { (isCompleted) in toastLabel.removeFromSuperview() }
         )
-    }
-}
-
-extension ViewController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Make text field only accept numbers
-        let invalidCharacters = CharacterSet(charactersIn: "0123456789.").inverted
-        return string.rangeOfCharacter(from: invalidCharacters) == nil
     }
 }

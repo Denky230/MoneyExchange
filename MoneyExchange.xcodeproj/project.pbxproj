@@ -15,6 +15,7 @@
 		1F77C2A92188CEA40044E07B /* MoneyExchangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F77C2A82188CEA40044E07B /* MoneyExchangeTests.swift */; };
 		1F77C2B42188CEA40044E07B /* MoneyExchangeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F77C2B32188CEA40044E07B /* MoneyExchangeUITests.swift */; };
 		1F77C2C42188D2270044E07B /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F77C2C32188D2270044E07B /* Coin.swift */; };
+		1FAA1A75219B44BF00E552A4 /* NumberNaturalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAA1A74219B44BF00E552A4 /* NumberNaturalTextField.swift */; };
 		FA183B9B21974A88005866FB /* HackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA183B9A21974A88005866FB /* HackViewController.swift */; };
 		FA8B3D89219A5950007C01F0 /* CoinPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B3D88219A5950007C01F0 /* CoinPicker.swift */; };
 		FA8B3D8C219A5F20007C01F0 /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B3D8B219A5F20007C01F0 /* CoinManager.swift */; };
@@ -52,6 +53,7 @@
 		1F77C2B32188CEA40044E07B /* MoneyExchangeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyExchangeUITests.swift; sourceTree = "<group>"; };
 		1F77C2B52188CEA40044E07B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F77C2C32188D2270044E07B /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		1FAA1A74219B44BF00E552A4 /* NumberNaturalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberNaturalTextField.swift; sourceTree = "<group>"; };
 		FA183B9A21974A88005866FB /* HackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackViewController.swift; sourceTree = "<group>"; };
 		FA8B3D88219A5950007C01F0 /* CoinPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPicker.swift; sourceTree = "<group>"; };
 		FA8B3D8B219A5F20007C01F0 /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				FA8B3D88219A5950007C01F0 /* CoinPicker.swift */,
+				1FAA1A74219B44BF00E552A4 /* NumberNaturalTextField.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				FA183B9B21974A88005866FB /* HackViewController.swift in Sources */,
 				1F77C2962188CEA20044E07B /* ViewController.swift in Sources */,
 				1F77C2942188CEA20044E07B /* AppDelegate.swift in Sources */,
+				1FAA1A75219B44BF00E552A4 /* NumberNaturalTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

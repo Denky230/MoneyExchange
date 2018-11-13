@@ -10,24 +10,33 @@ import UIKit
 
 class HackViewController: UIViewController {
     
+    var numberInputField: NumberNaturalTextField = NumberNaturalTextField()
     @IBOutlet weak var newCoinValue: UITextField!
-    
-    // TO DO: extract field delegates from main
     
     // PickerView
     var coinPicker: CoinPicker = CoinPicker()
     @IBOutlet weak var pickerView: UIPickerView!
+    
+    @IBAction func btnApply(_ sender: UIButton) {
+        let newValue = Double(newCoinValue.text!)!
+        coins[coinPicker.selectedRow(inComponent: 0)].setValue(newValue: newValue)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         initPickerView()
+        initTextField()
     }
     
     func initPickerView() {
         pickerView.delegate = coinPicker
         coinPicker.initialize(numComponents: 1)
+    }
+    func initTextField() {
+        newCoinValue.delegate = numberInputField
+        newCoinValue.keyboardType = .numberPad
     }
 
     /*
