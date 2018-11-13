@@ -13,6 +13,8 @@ var coins: [Coin] = []
 
 class CoinManager {
     
+    init() { initCoinsArray() }
+    
     // Coin fields
     let coinNames: [String] = [
         "Euro", "Dollar", "Pound"

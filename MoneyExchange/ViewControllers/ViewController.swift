@@ -71,7 +71,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        manager.initCoinsArray()
         initPickerView()
         initMoneyInputText()
         currCoin = 0
