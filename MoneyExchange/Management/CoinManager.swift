@@ -34,6 +34,7 @@ class CoinManager {
     ]
     
     func initCoinsArray() {
+        coins.removeAll()
         for i in 0 ..< coinNames.count {
             coins.append(Coin.init(
                 name: coinNames[i],
